@@ -70,16 +70,54 @@ class ProfilePage extends StatelessWidget {
                   },
                   child: Text('เลือกพนักงาน'),
                 ),
-                SizedBox(height: 20), // เพิ่มช่องว่างระหว่างปุ่ม
-                ElevatedButton(
-                  onPressed: () {
-                    // ตรวจสอบว่ามีข้อมูลพนักงานหรือไม่ก่อนนำไปยังหน้า TimeAttendancePage
-                    if (employee != null) {
-                      Navigator.pushNamed(context, '/3');
-                    }
-                  },
-                  child: Text('ลงเวลาเข้างาน/ออกงาน'),
-                ),
+                SizedBox(height: 20),
+
+                // เพิ่มช่องว่างระหว่างปุ่ม
+
+                Column(
+                  children: [
+                    GridView.count(
+                      shrinkWrap:
+                          true, // ทำให้ GridView ไม่ขยายเต็มพื้นที่ของหน้าจอ
+                      crossAxisCount: 2, // จำนวนคอลัมน์ในแต่ละแถว
+                      mainAxisSpacing: 5.0, // ระยะห่างระหว่างปุ่มในแนวตั้ง
+                      crossAxisSpacing: 5.0, // ระยะห่างระหว่างปุ่มในแนวนอน
+                      childAspectRatio:
+                          2.5, // กำหนดอัตราส่วน 1:1 เพื่อทำให้เป็นสี่เหลี่ยมจัตุรัส
+                      padding:
+                          const EdgeInsets.all(0.0), // กำหนด padding รอบๆ Grid
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            // ตรวจสอบว่ามีข้อมูลพนักงานหรือไม่ก่อนนำไปยังหน้า TimeAttendancePage
+                            if (employee != null) {
+                              Navigator.pushNamed(context, '/3');
+                            }
+                          },
+                          child: Text('ลงเวลาเข้างาน/ออกงาน'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/4');
+                          },
+                          child: const Text('ขอลางาน'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/5');
+                          },
+                          child: const Text('*อนุมัติวันลาพนักงาน*'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/6');
+                          },
+                          child: const Text('*การประเมิน*'),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
               ],
             );
           },
